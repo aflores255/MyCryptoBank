@@ -21,6 +21,7 @@ contract MyCryptoBank{
     uint256 public maxBalance;
     address public admin;
     mapping(address=>uint256) public userBalance;
+    bool public contractPaused;
 
     //Modifiers
 
@@ -29,10 +30,16 @@ contract MyCryptoBank{
         _;
     }
 
+    modifier NotPaused(){
+        require(contractPaused == false,"Contract is paused");
+        _;
+    }
+
     //Events
 
     event DepositEth(address user_, uint256 amount_);
     event WithdrawEth(address user_,uint256 amount_);
+    event PauseStatus(bool paused);
 
     // Constructor
 
@@ -40,6 +47,7 @@ contract MyCryptoBank{
 
         maxBalance = maxBalance_;
         admin = admin_;
+        contractPaused = false;
 
     }
 
@@ -47,7 +55,7 @@ contract MyCryptoBank{
 
     // Deposit Ether
 
-    function deposit() external payable {
+    function deposit() external payable NotPaused{
         require(userBalance[msg.sender] + msg.value <= maxBalance,"");
         userBalance[msg.sender] += msg.value; // assign deposit value to user address
         emit DepositEth(msg.sender, msg.value);
@@ -56,7 +64,7 @@ contract MyCryptoBank{
 
     // Withdraw Ether
 
-    function withdraw(uint256 amount_) external{
+    function withdraw(uint256 amount_) external NotPaused{
 
         require(amount_ <= userBalance[msg.sender],"Cannot withdraw more than available balance");
         //update user balance
@@ -73,9 +81,31 @@ contract MyCryptoBank{
 
     // Modify maxBalance
 
-    function modifyBalance(uint256 newMaxBalance_) external onlyAdmin{
+    function modifyMaxBalance(uint256 newMaxBalance_) external onlyAdmin{
 
         maxBalance = newMaxBalance_;
+    }
+
+     // Modify contractPaused
+
+    function pauseContract(bool contractPaused_) external onlyAdmin{
+
+        contractPaused = contractPaused_;
+        emit PauseStatus(contractPaused_);
+    }
+
+    // Check bank balance
+
+    function getBankBalance() external view returns (uint256) {
+
+        return address(this).balance;
+
+    }   
+
+    // Check sender balance
+
+    function getMyAvailableBalance() external view returns (uint256) {
+        return userBalance[msg.sender];
     }
 
 

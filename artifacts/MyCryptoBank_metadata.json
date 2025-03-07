@@ -45,6 +45,19 @@
 				"inputs": [
 					{
 						"indexed": false,
+						"internalType": "bool",
+						"name": "paused",
+						"type": "bool"
+					}
+				],
+				"name": "PauseStatus",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
 						"internalType": "address",
 						"name": "user_",
 						"type": "address"
@@ -74,9 +87,48 @@
 			},
 			{
 				"inputs": [],
+				"name": "contractPaused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "deposit",
 				"outputs": [],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBankBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMyAvailableBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -100,7 +152,20 @@
 						"type": "uint256"
 					}
 				],
-				"name": "modifyBalance",
+				"name": "modifyMaxBalance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "contractPaused_",
+						"type": "bool"
+					}
+				],
+				"name": "pauseContract",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -166,11 +231,11 @@
 	},
 	"sources": {
 		"MyCryptoBank.sol": {
-			"keccak256": "0x617119e18bb533fe0282c5202345e4bcd4ab110719b063083b566465acc5fe81",
+			"keccak256": "0x725c723c1524181d086c9a20e73b3b746645d7289bb7d261712eca4bea657a1e",
 			"license": "LGPL-3.0-only",
 			"urls": [
-				"bzz-raw://f19493d86c39d2055914004b42c921158840c224540b5c0367b3ee6dff54625d",
-				"dweb:/ipfs/QmboxCCUA3oxBUAMnXNXqjrn1rmaVfzQhG6eEW4gaxc9L9"
+				"bzz-raw://f057447da0bf41a3619816f153ebce4529f9645f3bee553d442446afbfad3564",
+				"dweb:/ipfs/QmZohbP5AYyzAhkv8WZLGQytmLQgeAReUUfz5cbGCBNSeh"
 			]
 		}
 	},
