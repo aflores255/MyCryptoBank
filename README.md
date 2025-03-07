@@ -54,7 +54,7 @@ Modifiers enforce specific rules before allowing a function to execute.
 
 | **Function**                   | **Description**                                                               |
 |--------------------------------|-------------------------------------------------------------------------------|
-| **`modifyBalance(newMaxBalance_)`** | Allows the admin to modify the maximum deposit limit per user.         |
+| **`modifyMaxBalance(newMaxBalance_)`** | Allows the admin to modify the maximum deposit limit per user.         |
 | **`pauseContract(contractPaused_)`** | Allows the admin to pause or unpause the contract.                     |
 
 #### **Utility Functions**
@@ -93,7 +93,7 @@ Modifiers enforce specific rules before allowing a function to execute.
 - Use **`getMyAvailableBalance()`** to check your balance.
 
 #### **For the Admin:**
-- Use **`modifyBalance(newMaxBalance_)`** to update the maximum deposit limit per user.
+- Use **`modifyMaxBalance(newMaxBalance_)`** to update the maximum deposit limit per user.
 - Use **`pauseContract(contractPaused_)`** to pause or resume contract operations.
 - Use **`getBankBalance()`** to check the total funds held in the contract.
 
